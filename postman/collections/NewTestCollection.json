@@ -1,0 +1,446 @@
+{
+	"info": {
+		"_postman_id": "32a2276b-b040-453c-9191-1846ee6efa4e",
+		"name": "API_TECH_SHOP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "2077884-32a2276b-b040-453c-9191-1846ee6efa4e"
+	},
+	"item": [
+		{
+			"name": "Get All Items",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b52a366a-4a29-46a0-ba0b-2bd563d16a82",
+						"exec": [
+							"const response = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 100ms\", () => {",
+							"    pm.expect(pm.response.responseTime).to.be.below(100);",
+							"    pm.expect(response[0].data.color).to.eql(\"Cloudy White1\");",
+							"});",
+							"    ",
+							"",
+							"pm.test(\"Your test name\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Google Pixel 6 Pro\");",
+							"});",
+							"",
+							"var appleProducts = [];",
+							"",
+							"for (let i = 0; i < response.length; i++) {",
+							"    if (response[i].name.includes(\"Apple\") ) {",
+							"        appleProducts.push(response[i].id);",
+							"        }",
+							"};",
+							"",
+							"console.log(\"Якийсь текст\", appleProducts);",
+							"",
+							"pm.test(\"Correct amount of Apple products\", () => {",
+							"    pm.expect(appleProducts.length).to.eql(10);",
+							"});",
+							"",
+							"",
+							"console.log(\"Hello World!\");",
+							"console.log(\"Привіт Світ!\");",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "261c0c5f-b60b-4418-9729-165afea2c757",
+						"exec": [
+							"pm.environment.set(\"EnvVariable\", 777);",
+							"",
+							"pm.globals.set(\"GlobalVariable\", 888);",
+							"",
+							"pm.collectionVariables.set(\"CollectionVariable\", 999);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "f0f014ab-4ebb-4916-a323-dfea558ee228",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Token",
+						"value": "fshgifjhgijdhgijdhgofidfhioghiufd",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseUrl}}/objects",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"objects"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Item by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a975696e-d3b7-4c51-b366-dada1883601a",
+						"exec": [
+							"pm.test(\"Your test name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData[0].name).to.eql(\"Apple MacBook Pro\");",
+							"});",
+							"",
+							"console.log(\"Global - \", pm.globals.get(\"GlobalVariable\"));",
+							"",
+							"console.log(\"Environment - \", pm.environment.get(\"EnvVariable\"));",
+							"",
+							"console.log(\"Collection - \", pm.collectionVariables.get(\"CollectionVariable\"));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "8eaa0244-1533-4c19-b0f5-a7f5371b5584",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/objects?id=ff8081818635622a0186375d03b20031",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"objects"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "ff8081818635622a0186375d03b20031"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Item",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "5d7b5164-45f4-4060-8e25-456bd97db6eb",
+						"exec": [
+							"let jsonSchemaSample = {",
+							"  ",
+							"  \"type\": \"object\",",
+							"  \"properties\": {",
+							"    \"id\": {",
+							"      \"type\": \"string\"",
+							"    },",
+							"    \"name\": {",
+							"      \"type\": \"string\",",
+							"      \"minLength\": 1,",
+							"      \"maxLength\":20",
+							"    },",
+							"    \"createdAt\": {",
+							"      \"type\": \"string\"",
+							"    },",
+							"    \"data\": {",
+							"      \"type\": \"object\",",
+							"      \"properties\": {",
+							"        \"year\": {",
+							"          \"type\": \"integer\",",
+							"          \"minimum\":1970,",
+							"          \"maximum\":2023",
+							"        },",
+							"        \"price\": {",
+							"          \"type\": \"number\"",
+							"        },",
+							"        \"CPU model\": {",
+							"          \"type\": \"string\"",
+							"        },",
+							"        \"Hard disk size\": {",
+							"          \"type\": \"string\"",
+							"        }",
+							"      },",
+							"      \"required\": [",
+							"        \"year\",",
+							"        \"price\",",
+							"        \"CPU model\",",
+							"        \"Hard disk size\"",
+							"      ]",
+							"    }",
+							"  },",
+							"  \"required\": [",
+							"    \"id\",",
+							"    \"name\",",
+							"    \"createdAt\",",
+							"    \"data\"",
+							"  ]",
+							"}",
+							"",
+							"pm.collectionVariables.set(\"jsonSchemaSample\", jsonSchemaSample);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "e678f22c-5ef3-4d44-a400-a3a7228e402c",
+						"exec": [
+							"",
+							"pm.test('Schema validation', () => {",
+							"    pm.response.to.have.jsonSchema(pm.collectionVariables.get(\"jsonSchemaSample\"));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "f4949853-b296-46b4-8125-3fe35f5076fa",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"name\": \"Apple MacBook Pro\",\n   \"data\": {\n      \"year\": 2022,\n      \"price\": 2449.99,\n      \"CPU model\": \"Intel Core i9\",\n      \"Hard disk size\": \"2 TB\"\n   }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/objects",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"objects"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Singe Item",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0942a77d-26a3-43cb-87c3-3bd3be4f9c69",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"if (pm.response.code !== 200) {",
+							"    setTimeout(function () { }, [1000]);",
+							"    postman.setNextRequest(\"Partly update item\");",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "94aa8cfc-1ddf-45c0-b3a7-376bcdf9394c",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/objects/{{itemId}}_1122",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"objects",
+						"{{itemId}}_1122"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Item",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7e6bf611-f8f2-4015-ba58-681038707827",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "00e64b27-eb7b-4e58-96a0-5d5eecb2e242",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"name\": \"Apple MacBook Pro\",\n   \"data\": {\n      \"year\": 2022,\n      \"price\": 2449.99,\n      \"CPU model\": \"Intel Core t9\",\n      \"Hard disk size\": \"2 TB\"\n   }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/objects/ff8081818635622a0186374ab2140028\n",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"objects",
+						"ff8081818635622a0186374ab2140028\n"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Partly update item",
+			"id": "636db169-e212-4942-a233-6127ba5b035a",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"name\": \"Apple MacBook Pro 16 (Updated Name)\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/objects/ff8081818635622a0186374ab2140028",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"objects",
+						"ff8081818635622a0186374ab2140028"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Item",
+			"id": "fc1f9f16-6ab5-4c24-8f35-cab0c8de8bee",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/objects/ff8081818635622a0186374ab2140028",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"objects",
+						"ff8081818635622a0186374ab2140028"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ensure Item was deleted",
+			"id": "5c5417d1-9bd4-45b1-b9af-6dffdcb7c7f7",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/objects/ff8081818635622a0186374ab2140028",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"objects",
+						"ff8081818635622a0186374ab2140028"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"id": "6ac17231-cc4b-48f0-aa9f-da4f3f4019f8",
+			"key": "jsonSchemaSample",
+			"value": ""
+		},
+		{
+			"id": "ea946455-2104-40ca-8580-de835d8a6334",
+			"key": "jsonSchemaSample1",
+			"value": ""
+		},
+		{
+			"id": "caa7709b-0859-4a07-b373-4f93d6efca90",
+			"key": "CollectionVariable",
+			"value": ""
+		},
+		{
+			"id": "fa5718a9-96b1-4d13-92b1-6ec77e04acbf",
+			"key": "itemId",
+			"value": ""
+		},
+		{
+			"id": "519e79e7-846c-4278-b598-bca728dd8742",
+			"key": "jsonSchemaSampleNew",
+			"value": ""
+		}
+	]
+}
