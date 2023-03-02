@@ -197,6 +197,70 @@
 					]
 				}
 			},
+			
+		{
+			"name": "Get All Items New Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "67ec5dcc-3308-4a58-b472-9fe614f90f08",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 1300ms\", () => {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(pm.response.responseTime).to.be.below(1300);",
+							"    pm.expect(jsonData[0].data.color).to.eql(\"Cloudy White1\");",
+							"",
+							"});",
+							"    ",
+							"",
+							"pm.test(\"Your test name\", function () {",
+							"    ",
+							"    pm.expect(pm.response.text()).to.include(\"Google Pixel 6 Pro\");",
+							"});",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "3acfbf6b-2d3d-43ef-b231-6bf43ad8335d",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Token",
+						"value": "fshgifjhgijdhgijdhgofidfhioghiufd",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseUrl}}/objects",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"objects"
+					]
+				}
+			},
 			"response": []
 		}
 	]
