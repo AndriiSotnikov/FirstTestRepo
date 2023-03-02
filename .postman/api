@@ -5,7 +5,7 @@ id = 0d325155-4728-48db-b026-4725d51ac651
 
 [relations.collections]
 rootDirectory = postman/collections
-files[] = {"id":"2077884-daf2b913-55ba-4304-88a7-2274bd35b4b6","path":"PRJCTR_GIT.json","metaData":{}}
+files[] = {"id":"2077884-32a2276b-b040-453c-9191-1846ee6efa4e","path":"API_TECH_SHOP.json","metaData":{}}
 
 [relations.collections.metaData]
 
