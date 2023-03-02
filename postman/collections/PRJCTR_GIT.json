@@ -1,0 +1,203 @@
+{
+	"info": {
+		"_postman_id": "daf2b913-55ba-4304-88a7-2274bd35b4b6",
+		"name": "PRJCTR_GIT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "2077884-daf2b913-55ba-4304-88a7-2274bd35b4b6"
+	},
+	"item": [
+		{
+			"name": "Get All Items Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 300ms\", () => {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(pm.response.responseTime).to.be.below(100);",
+							"    pm.expect(jsonData[0].data.color).to.eql(\"Cloudy White1\");",
+							"});",
+							"    ",
+							"",
+							"pm.test(\"Your test name\", function () {",
+							"    ",
+							"    pm.expect(pm.response.text()).to.include(\"Google Pixel 6 Pro\");",
+							"});",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"id": "d0bf04a1-9f1c-4dbd-ba64-6745b3bf60a9"
+					}
+				}
+			],
+			"id": "edc97be8-56e4-4afe-8654-a47437a0e386",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Token",
+						"value": "fshgifjhgijdhgijdhgofidfhioghiufd",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseUrl}}/objects",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"objects"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Items Copy 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 300ms\", () => {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(pm.response.responseTime).to.be.below(100);",
+							"    pm.expect(jsonData[0].data.color).to.eql(\"Cloudy White1\");",
+							"});",
+							"    ",
+							"",
+							"pm.test(\"Your test name\", function () {",
+							"    ",
+							"    pm.expect(pm.response.text()).to.include(\"Google Pixel 6 Pro\");",
+							"});",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"id": "d0bf04a1-9f1c-4dbd-ba64-6745b3bf60a9"
+					}
+				}
+			],
+			"id": "fc2c86b4-030b-4b9f-8856-3b06a3e56bde",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Token",
+						"value": "fshgifjhgijdhgijdhgofidfhioghiufd",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseUrl}}/objects",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"objects"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Items",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "67ec5dcc-3308-4a58-b472-9fe614f90f08",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 1300ms\", () => {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(pm.response.responseTime).to.be.below(1300);",
+							"    pm.expect(jsonData[0].data.color).to.eql(\"Cloudy White1\");",
+							"",
+							"});",
+							"    ",
+							"",
+							"pm.test(\"Your test name\", function () {",
+							"    ",
+							"    pm.expect(pm.response.text()).to.include(\"Google Pixel 6 Pro\");",
+							"});",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "3acfbf6b-2d3d-43ef-b231-6bf43ad8335d",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Token",
+						"value": "fshgifjhgijdhgijdhgofidfhioghiufd",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseUrl}}/objects",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"objects"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
